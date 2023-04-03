@@ -1,6 +1,13 @@
 #include "route_planner.h"
 #include <algorithm>
 
+bool Compare(RouteModel::Node *a, RouteModel::Node *b) {
+  float f1 = a->g_value + a->h_value;
+  float f2 = b->g_value + b->h_value;
+  return (f1 > f2); 
+}
+
+
 RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, float end_x, float end_y): m_Model(model) {
     // Convert inputs to percentage:
     start_x *= 0.01;
